@@ -1,26 +1,23 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import "./App.css";
 
-function App() {
+import NavBar from "./components/NavBar";
+import SortAlgorithm from "./components/SortAlgorithm";
+import SearchAlgorithm from "./components/SearchAlgorithm";
+
+const App: React.FC = () => {
+  const [selectedOption, setSelectedOption] = useState("sort");
+
+  const handleSelectOption = (option: string) => {
+    setSelectedOption(option);
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <NavBar onSelectOption={handleSelectOption} />
+      {selectedOption === "sort" ? <SortAlgorithm /> : <SearchAlgorithm />}
     </div>
   );
-}
+};
 
 export default App;
